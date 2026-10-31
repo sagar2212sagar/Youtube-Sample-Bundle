@@ -5,6 +5,16 @@ bundle:
 include:
   - resources/*.yml
   - resources/*/*.yml
+  
+variables:
+  catalog_name:
+    description: 'A catalog name of the project'
+    default: 'agent'
+  
+  schema_name:
+    description: 'A schema name of the project'
+    default: 'bronze'
+      
 
 targets:
   # The 'dev' target, for development purposes. This target is the default.
@@ -13,6 +23,12 @@ targets:
     default: true
     workspace:
       host: https://dbc-1ecc2d01-e312.cloud.databricks.com
+      root_path: /Users/ssagarprajapati@gmail.com/github_actions
+
+    variables:
+      catalog_name : "agent_dev"
+      schema_name: "bronze_dev"
+    
     
 
   # The 'prod' target, used for production deployment.
@@ -22,6 +38,9 @@ targets:
       host: https://dbc-1ecc2d01-e312.cloud.databricks.com
       # We always use /Users/ssagarprajapati@gmail.com for all resources to make sure we only have a single copy.
       root_path: /Users/ssagarprajapati@gmail.com/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog_name : "agent_prod"
+      schema_name: "bronze_prod"
     run_as:
       # This runs as ssagarprajapati@gmail.com in production. We could also use a service principal here,
       # see https://docs.databricks.com/dev-tools/bundles/permissions.html.
