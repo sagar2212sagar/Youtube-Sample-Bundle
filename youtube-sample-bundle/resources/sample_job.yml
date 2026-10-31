@@ -1,0 +1,13 @@
+resources:
+  jobs:
+    Sample_Yt:
+      name: Sample Yt
+      tasks:
+        - task_key: Sample
+          notebook_task:
+            notebook_path: ../src/notebooks/Sample_YT.ipynb
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
+
